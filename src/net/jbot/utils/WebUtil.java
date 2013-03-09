@@ -1,10 +1,13 @@
 package net.jbot.utils;
 
+import java.awt.Desktop;
 import java.io.BufferedReader;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLConnection;
 
@@ -27,7 +30,8 @@ public class WebUtil {
 		}
 		endTime = System.currentTimeMillis();
 		totalTime = endTime - startTime;
-		System.out.println("Downloaded " + (new Integer(amountRead).toString()) + " bytes (" + totalTime + "ms)");
+		System.out.println("Downloaded " + (new Integer(amountRead).toString())
+				+ " bytes (" + totalTime + "ms)");
 		writer.close();
 		reader.close();
 	}
@@ -38,7 +42,8 @@ public class WebUtil {
 	public static String findGamepack(String source) {
 		String archiveParam = "archive=";
 		int gamepack = source.indexOf(archiveParam);
-		return source.substring(gamepack + archiveParam.length(), source.indexOf('\'', gamepack));
+		return source.substring(gamepack + archiveParam.length(),
+				source.indexOf('\'', gamepack));
 	}
 
 	public static String readPage(String url) throws IOException {
@@ -52,6 +57,18 @@ public class WebUtil {
 			source.append(line);
 		reader.close();
 		return source.toString();
+	}
+
+	public static void openURL(String url) {
+		try {
+			Util.log("Launching url: " + url);
+			Desktop desktop = Desktop.getDesktop();
+			URI uri = new URI(url);
+			desktop.browse(uri.resolve(uri));
+		} catch (URISyntaxException | IOException e) {
+			e.printStackTrace();
+		}
+
 	}
 
 }

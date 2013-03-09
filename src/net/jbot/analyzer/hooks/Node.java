@@ -2,10 +2,10 @@ package net.jbot.analyzer.hooks;
 
 public interface Node {
 	
-	long getUID();
+	public long getUID();
 	
-	Node getPrevious();
+	public Node getPrevious();
 	
-	Node getNext();
+	public Node getNext();
 
 }
