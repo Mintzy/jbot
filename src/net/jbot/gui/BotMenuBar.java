@@ -7,20 +7,21 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JSeparator;
 
-@SuppressWarnings("serial")
-public class JBotMenuBar extends JMenuBar {
-	
+public class BotMenuBar extends JMenuBar {
+
+	private static final long serialVersionUID = 4984650483752432859L;
+
 	private ActionListener listener;
-	
+
 	public static final String[] TITLES;
 	public static final String[][] ELEMENTS;
-	
+
 	static {
 		TITLES = new String[] { "File" };
-		ELEMENTS = new String[][] { { "Project thread (Rune-Server)", "Project Github", "About", "-", "Exit" } };
+		ELEMENTS = new String[][] { { "Load Bot", "About", "-", "Exit" } };
 	}
-	
-	public JBotMenuBar(ActionListener listener) {
+
+	public BotMenuBar(ActionListener listener) {
 		this.listener = listener;
 		for (int i = 0; i < TITLES.length; i++) {
 			String titles = TITLES[i];
@@ -42,5 +43,6 @@ public class JBotMenuBar extends JMenuBar {
 		}
 		return menu;
 	}
+
 
 }
