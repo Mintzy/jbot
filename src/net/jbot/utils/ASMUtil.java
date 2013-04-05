@@ -15,7 +15,11 @@ public class ASMUtil {
 	@SuppressWarnings("unchecked")
 	public static void addInterface(ClassNode node, String interfaceName) {
 		node.interfaces.add(interfaceName);
-		XMLUtil.addHook(node.name, interfaceName, interfaceName.substring(15));
+		if (interfaceName.equals("null")) {
+			XMLUtil.addHook(node.name, "null", "null");
+		} else {
+			XMLUtil.addHook(node.name, interfaceName, interfaceName.substring(15));
+		}
 		System.out.println("[^] " + node.name + " implements " + interfaceName);
 	}
 

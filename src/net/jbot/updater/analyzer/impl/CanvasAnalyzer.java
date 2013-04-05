@@ -17,7 +17,7 @@ public class CanvasAnalyzer extends AbstractAnalyzer {
 
 	@Override
 	protected void analyze(ClassNode node) {
-		ASMUtil.setSuper(node, "net.jbot.graphics.RSCanvas");
+		ASMUtil.addInterface(node, "null");
 	}
 
 }
