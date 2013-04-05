@@ -14,25 +14,23 @@ import java.util.regex.Pattern;
 
 public class RSStub implements AppletStub {
 
-	private Pattern ARCHIVE_PATTERN = Pattern.compile("archive=(.*) ");
-	private Pattern PARAMETER_PATTERN = Pattern
-			.compile("<param name=\"?([^\\s]+)\"?\\s+value=\"?([^>]*)\"?>", Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE);
+	private Pattern aPattern = Pattern.compile("archive=(.*) ");
+	private Pattern pPattern = Pattern
+			.compile("<param name=\"?([^\"]+)\"?\\s+value=\"?([^\"]*)\"?>");
 	private Map<String, String> parameters = new HashMap<String, String>();
 
 	public RSStub() {
 		String source;
 		try {
 			source = getPageSource(getCodeBase());
-			Matcher archiveMatcher = ARCHIVE_PATTERN.matcher(source);
-			if (archiveMatcher.find()) {
-/*				Matcher param = PARAMETER_PATTERN.matcher(source);
-				if (param.find()) {
-					String key = param.group(1);
-					String value = param.group(2);
+			Matcher aMatcher = aPattern.matcher(source);
+			if (aMatcher.find()) {
+				Matcher pMatcher = pPattern.matcher(source);
+				while (pMatcher.find()) {
+					String key = pMatcher.group(1);
+					String value = pMatcher.group(2);
 					parameters.put(key, value);
-					System.out.println(key + " : " + value);
-				}*/
-				parseParameters(source);
+				}
 				if (source.contains("archive")) {
 					parameters.put("archive", source.substring(
 							source.indexOf("archive=") + 8,
@@ -41,25 +39,6 @@ public class RSStub implements AppletStub {
 			}
 		} catch (IOException | InterruptedException e) {
 			e.printStackTrace();
-		}
-	}
-
-	private void parseParameters(String pageSource) {
-		String[] lines = pageSource.split("\n");
-		String paramNameBeginning = "param name=";
-		String valueBeginning = "value=";
-		for (String line : lines) {
-			if (!line.contains(paramNameBeginning)) {
-				continue;
-			}
-			int start = line.indexOf(paramNameBeginning)
-					+ paramNameBeginning.length() + 1;
-			int end = line.indexOf('"', start);
-			String name = line.substring(start, end);
-			start = line.indexOf(valueBeginning) + valueBeginning.length() + 1;
-			end = line.indexOf('"', start);
-			String value = line.substring(start, end);
-			parameters.put(name, value);
 		}
 	}
 

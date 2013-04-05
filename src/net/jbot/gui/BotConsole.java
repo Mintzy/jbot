@@ -43,7 +43,7 @@ public class BotConsole extends JList<Object> {
 
 			return String.format(
 					"%s  %-" + max + "s %s",
-					"[" + dateFormat.format(record.getMillis()) + "]: ",
+					"[" + dateFormat.format(record.getMillis()) + "]",
 					name.length() > max ? name.substring(0,
 							max - append.length()) : name, record.getMessage());
 		}
@@ -106,7 +106,7 @@ public class BotConsole extends JList<Object> {
 
 		private Border EMPTY_BORDER = new EmptyBorder(1, 1, 1, 1);;
 		private Border SELECTED_BORDER = BorderFactory.createLineBorder(
-				Color.GRAY, 1);;
+				Color.GREEN, 1);;
 
 		@Override
 		public Component getListCellRendererComponent(JList<?> list,

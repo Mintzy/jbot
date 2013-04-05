@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<hooks>
+     <hook name="fy">
+          <identity>Node</identity>
+          <interface>net.jbot.hooks.Node</interface>
+     </hook>
+</hooks>

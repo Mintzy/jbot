@@ -17,9 +17,12 @@ public class MainFrame extends JFrame implements ActionListener {
 
 	private MainPanel panel = new MainPanel();
 	private BotMenuBar menuBar;
+	private boolean botLoaded = false;
 
 	public void buildFrame() {
-		panel.getConsole().log(new LogRecord(Level.INFO, "Welcome to " + Constants.NAME + "."));
+		panel.getConsole()
+				.log(new LogRecord(Level.INFO, "Welcome to " + Constants.NAME
+						+ "."));
 		setTitle(Constants.TITLE);
 		setPreferredSize(new Dimension(765, 670));
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -56,9 +59,15 @@ public class MainFrame extends JFrame implements ActionListener {
 									+ " and RuneScape client hacking.",
 							"About", JOptionPane.INFORMATION_MESSAGE);
 		}
-		
+
 		if (action.equalsIgnoreCase("load bot")) {
-			panel.loadBot();
+			if (!botLoaded) {
+				botLoaded = true;
+				panel.loadBot();
+				panel.getConsole().log(new LogRecord(Level.INFO, "Applet loaded!"));
+			} else {
+				panel.getConsole().log(new LogRecord(Level.WARNING, "The Bot is aleady loaded!"));
+			}
 		}
 
 	}

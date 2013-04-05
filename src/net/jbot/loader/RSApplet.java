@@ -1,7 +1,6 @@
 package net.jbot.loader;
 
 import java.applet.Applet;
-import java.awt.Graphics;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
@@ -25,10 +24,6 @@ public class RSApplet extends Applet {
 		loader.init();
 		loader.start();
 		return loader;
-	}
-
-	public void paint(Graphics g) {
-		g.drawString("[RuneScape Applet would go here]", 10, 50);
 	}
 
 }
