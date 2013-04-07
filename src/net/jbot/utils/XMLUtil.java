@@ -18,8 +18,11 @@ import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
 
 public class XMLUtil {
+	
+	
 
-	public static void addHook(String hookName, String interfaceName, String identity) {
+	public static void addHook(String hookName, String interfaceName,
+			String identity, boolean superOverride, String superOverrideClass) {
 		try {
 			DocumentBuilderFactory dFactory = DocumentBuilderFactory
 					.newInstance();
@@ -30,15 +33,23 @@ public class XMLUtil {
 
 			Element hook = doc.createElement("hook");
 			hook.setAttribute("name", hookName);
-			
+
 			Element eIdentity = doc.createElement("identity");
 			eIdentity.appendChild(doc.createTextNode(identity));
 			hook.appendChild(eIdentity);
-			
+
 			Element eInterface = doc.createElement("interface");
 			eInterface.appendChild(doc.createTextNode(interfaceName));
 			hook.appendChild(eInterface);
-
+			
+			Element eSuper = doc.createElement("super");
+			if (superOverride) {
+				eSuper.appendChild(doc.createTextNode(superOverrideClass));
+			} else {
+				eSuper.appendChild(doc.createTextNode("null"));
+			}
+			hook.appendChild(eSuper);
+			
 			hooks.insertBefore(hook, hooks.getLastChild());
 			write(doc);
 		} catch (SAXException | IOException | ParserConfigurationException e) {

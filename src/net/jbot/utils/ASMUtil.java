@@ -15,11 +15,8 @@ public class ASMUtil {
 	@SuppressWarnings("unchecked")
 	public static void addInterface(ClassNode node, String interfaceName) {
 		node.interfaces.add(interfaceName);
-		if (interfaceName.equals("null")) {
-			XMLUtil.addHook(node.name, "null", "null");
-		} else {
-			XMLUtil.addHook(node.name, interfaceName, interfaceName.substring(15));
-		}
+		XMLUtil.addHook(node.name, interfaceName, interfaceName.substring(15),
+				false, "null");
 		System.out.println("[^] " + node.name + " implements " + interfaceName);
 	}
 
@@ -55,6 +52,7 @@ public class ASMUtil {
 		}
 		System.out.println("set " + node.name + " supername to "
 				+ node.superName);
+		XMLUtil.addHook(node.name, "null", "Canvas", true, node.superName);
 	}
 
 }

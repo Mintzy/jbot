@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <hooks>
-     <hook name="fy">
+     <hook name="fi">
           <identity>Node</identity>
           <interface>net.jbot.hooks.Node</interface>
+          <super>null</super>
+     </hook>
+     <hook name="bj">
+          <identity>Canvas</identity>
+          <interface>null</interface>
+          <super>net.jbot.graphics.RSCanvas</super>
      </hook>
 </hooks>
