@@ -35,7 +35,7 @@ public class NodeAnalyzer extends AbstractAnalyzer {
 	@SuppressWarnings("unchecked")
 	@Override
 	protected void analyze(ClassNode node) {
-		ASMUtil.addInterface(node, "net.jbot.hooks.Node");
+		ASMUtil.addInterface(node, "net/jbot/hooks/NodeHook");
 		String previousName = "";
 		ListIterator<MethodNode> mnIt = node.methods.listIterator();
 		methodIterator: while (mnIt.hasNext()) {
@@ -58,13 +58,16 @@ public class NodeAnalyzer extends AbstractAnalyzer {
 		while (fnIt.hasNext()) {
 			FieldNode fn = fnIt.next();
 			if ((fn.access & Opcodes.ACC_STATIC) == 0) {
-				if (fn.desc.equals("J"))
-					ASMUtil.addGetter(node, fn, "getUID");
-				if (fn.name.equals(previousName))
+				if (fn.desc.equals("J")) {
+					ASMUtil.addGetter(node, fn, "getId");
+				}
+				if (fn.name.equals(previousName)) {
 					ASMUtil.addGetter(node, fn, "getPrevious");
+				}
 				if (fn.desc.equals(String.format("L%s;", node.name))
-						&& !fn.name.equals(previousName))
+						&& !fn.name.equals(previousName)) {
 					ASMUtil.addGetter(node, fn, "getNext");
+				}
 			}
 		}
 	}

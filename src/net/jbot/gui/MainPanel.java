@@ -5,7 +5,7 @@ import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
-import net.jbot.loader.RSApplet;
+import net.jbot.loader.RSLoader;
 
 @SuppressWarnings("serial")
 public class MainPanel extends JPanel {
@@ -21,7 +21,7 @@ public class MainPanel extends JPanel {
 	
 	public void loadBot() {
 		try {
-			RSApplet applet = new RSApplet();
+			RSLoader applet = new RSLoader();
 			add(applet.loadRS(), "Center");
 		} catch (Exception e) {
 			e.printStackTrace();

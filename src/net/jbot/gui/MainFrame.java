@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import net.jbot.Constants;
+import net.jbot.updater.Updater;
 
 public class MainFrame extends JFrame implements ActionListener {
 
@@ -64,10 +65,15 @@ public class MainFrame extends JFrame implements ActionListener {
 			if (!botLoaded) {
 				botLoaded = true;
 				panel.loadBot();
+				pack();
 				panel.getConsole().log(new LogRecord(Level.INFO, "Applet loaded!"));
 			} else {
 				panel.getConsole().log(new LogRecord(Level.WARNING, "The Bot is aleady loaded!"));
 			}
+		}
+		
+		if (action.equalsIgnoreCase("run updater")) {
+			new Updater();
 		}
 
 	}

@@ -15,15 +15,12 @@ public class ASMUtil {
 	@SuppressWarnings("unchecked")
 	public static void addInterface(ClassNode node, String interfaceName) {
 		node.interfaces.add(interfaceName);
-		XMLUtil.addHook(node.name, interfaceName, interfaceName.substring(15),
-				false, "null");
-		System.out.println("[^] " + node.name + " implements " + interfaceName);
+		System.out.println("[^] " + node.name + " implements " + interfaceName.replace("/", "."));
 	}
 
 	@SuppressWarnings("unchecked")
 	public static void addGetter(ClassNode node, FieldNode field, String method) {
-		MethodNode mn = new MethodNode(Opcodes.ACC_PUBLIC, method, "()"
-				+ field.desc + "." + field.name, null, null);
+		MethodNode mn = new MethodNode(Opcodes.ACC_PUBLIC, field.name, "()" + field.desc, null, null);
 		mn.visitVarInsn(Opcodes.ALOAD, 0);
 		mn.visitFieldInsn(Opcodes.GETFIELD, node.name, field.name, field.desc);
 		mn.visitInsn(Type.getType(field.desc).getOpcode(Opcodes.IRETURN));
@@ -51,8 +48,7 @@ public class ASMUtil {
 			}
 		}
 		System.out.println("set " + node.name + " supername to "
-				+ node.superName);
-		XMLUtil.addHook(node.name, "null", "Canvas", true, node.superName);
+				+ node.superName.replace("/", "."));
 	}
 
 }

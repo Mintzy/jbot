@@ -1,0 +1,96 @@
+// Decompiled by Jad v1.5.8f. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.kpdus.com/jad.html
+// Decompiler options: packimports(3) 
+
+import java.awt.Component;
+import java.awt.Graphics;
+import net.jbot.graphics.RSCanvas;
+
+public final class bx extends RSCanvas
+{
+
+    public final void update(Graphics g)
+    {
+        try
+        {
+            t.update(g);
+            return;
+        }
+        catch(RuntimeException runtimeexception)
+        {
+            throw dh.l(runtimeexception, (new StringBuilder()).append("bx.update(").append(')').toString());
+        }
+    }
+
+    public final void pi(Graphics g)
+    {
+        t.update(g);
+    }
+
+    public final void pn(Graphics g)
+    {
+        t.update(g);
+    }
+
+    bx(Component component)
+    {
+        try
+        {
+            super();
+            t = component;
+        }
+        catch(RuntimeException runtimeexception)
+        {
+            throw dh.l(runtimeexception, (new StringBuilder()).append("bx.<init>(").append(')').toString());
+        }
+        while(false) ;
+    }
+
+    public final void paint(Graphics g)
+    {
+        try
+        {
+            t.paint(g);
+            return;
+        }
+        catch(RuntimeException runtimeexception)
+        {
+            throw dh.l(runtimeexception, (new StringBuilder()).append("bx.paint(").append(')').toString());
+        }
+    }
+
+    public final void pp(Graphics g)
+    {
+        t.update(g);
+    }
+
+    public final void pw(Graphics g)
+    {
+        t.paint(g);
+    }
+
+    static final void l(long l1)
+    {
+        try
+        {
+            try
+            {
+                Thread.sleep(l1);
+            }
+            catch(InterruptedException interruptedexception) { }
+            return;
+        }
+        catch(RuntimeException runtimeexception)
+        {
+            throw dh.l(runtimeexception, (new StringBuilder()).append("bx.l(").append(')').toString());
+        }
+    }
+
+    public static final int bm = 200;
+    static final String p = "main_file_cache.dat2";
+    static ce ec[];
+    static ce ek;
+    static final int cm = 101;
+    static final int j = 1024;
+    Component t;
+}

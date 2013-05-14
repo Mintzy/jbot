@@ -18,7 +18,7 @@ public class BotMenuBar extends JMenuBar {
 
 	static {
 		TITLES = new String[] { "File", "Bot" };
-		ELEMENTS = new String[][] { { "About", "-", "Exit" }, { "Load Bot" } };
+		ELEMENTS = new String[][] { { "About", "-", "Exit" }, { "Run Updater", "Load Bot" } };
 	}
 
 	public BotMenuBar(ActionListener listener) {

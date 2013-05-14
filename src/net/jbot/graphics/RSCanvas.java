@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
+import net.jbot.Constants;
+
 @SuppressWarnings("serial")
 public class RSCanvas extends Canvas {
 	
@@ -13,8 +15,9 @@ public class RSCanvas extends Canvas {
     @Override
     public Graphics getGraphics() {
         final Graphics g = gameBuffer.getGraphics();
-        g.setColor(Color.GREEN);
-        g.drawString("jBot", 10, 50);
+        g.setColor(Color.CYAN);
+        g.drawString(Constants.TITLE, 10, 50);
+        
         super.getGraphics().drawImage(gameBuffer, 0, 0, null);
         return g;
     }
